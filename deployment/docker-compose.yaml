@@ -22,7 +22,7 @@ services:
     env_file:
       - ../db/.env
     ports:
-      - "5000:5432"
+      - "6000:5432"
     deploy:
       replicas: 1
       resources:
@@ -69,16 +69,35 @@ services:
       - ../grafana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ../grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
-  spring-app:
+  spring-app-virtual:
     build:
       context: ../spring-boot-app
     depends_on:
       - db-service
     restart: always
     environment:
-      - POOL_SIZE=20
+      - THREAD_MODE=virtual
     ports:
       - "8080:8080"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '3'
+          memory: 2G
+        reservations:
+          memory: 2G
+
+  spring-app-standard:
+    build:
+      context: ../spring-boot-app
+    depends_on:
+      - db-service
+    restart: always
+    environment:
+      - THREAD_MODE=standard
+    ports:
+      - "8090:8080"
     deploy:
       replicas: 1
       resources:
