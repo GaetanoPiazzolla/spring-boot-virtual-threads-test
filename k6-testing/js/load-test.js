@@ -20,7 +20,7 @@ export let options = {
 };
 
 export default function () {
-  const url = `http://nginx:4000/spring-${__ENV.TYPE}/`
+  const url = `http://nginx:4000/spring-app-${__ENV.THREAD}/`
 
   const params = {
     headers: {
