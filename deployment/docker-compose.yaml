@@ -16,6 +16,9 @@ services:
 
   db-service:
     container_name: db-service
+    cap_add:
+      - NET_ADMIN
+    tty: true
     build:
       context: ../db
     restart: always
