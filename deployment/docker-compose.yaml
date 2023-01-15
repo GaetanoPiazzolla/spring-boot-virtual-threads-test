@@ -35,20 +35,6 @@ services:
         reservations:
           memory: 250M
 
-  nginx:
-    container_name: nginx
-    image: nginx:latest
-    volumes:
-      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - spring-app-virtual
-      - spring-app-standard
-    ports:
-      - "4000:4000"
-    restart: always
-    deploy:
-      replicas: 1
-
   influxdb:
     container_name: influxdb
     image: influxdb:1.8
@@ -81,7 +67,7 @@ services:
     environment:
       - THREAD_MODE=virtual
     ports:
-      - "8080:8080"
+      - "8081:8080"
     deploy:
       replicas: 1
       resources:
@@ -100,7 +86,7 @@ services:
     environment:
       - THREAD_MODE=standard
     ports:
-      - "8090:8080"
+      - "8082:8080"
     deploy:
       replicas: 1
       resources:

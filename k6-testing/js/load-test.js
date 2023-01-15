@@ -13,14 +13,14 @@ const orderErrorRate = new Rate('Add Order error');
 
 export let options = {
   stages: [
-      { duration: "10s", target: `${__ENV.USERS}` },
-      { duration: "100s", target: `${__ENV.USERS}` },
-      { duration: "10s", target: 0 }
+      { duration: "5s", target: `${__ENV.USERS}` },
+      { duration: "50s", target: `${__ENV.USERS}` },
+      { duration: "5s", target: 0 }
   ]
 };
 
 export default function () {
-  const url = `http://nginx:4000/spring-app-${__ENV.THREAD}/`
+  const url = `http://spring-app-${__ENV.THREAD}:8080/`
 
   const params = {
     headers: {
