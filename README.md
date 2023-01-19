@@ -5,7 +5,7 @@ and standard spring application using platform threads.
 
 The experimental results I've found have been published in the following medium article for you to consider.
 
------- here ----- 
+https://medium.com/dev-genius/spring-boot-3-with-java-19-virtual-threads-ca6a03bc511d
 
 All this code is published under the GNU General Public License v3.0 and it's free for you to use and customize as you wish.
 
