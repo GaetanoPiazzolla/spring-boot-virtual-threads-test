@@ -59,7 +59,7 @@
       },
       "hiddenSeries": false,
       "id": 1,
-      "interval": ">1s",
+      "interval": "5s",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -93,7 +93,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -175,7 +175,7 @@
       },
       "hiddenSeries": false,
       "id": 17,
-      "interval": "1s",
+      "interval": "5s",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -210,7 +210,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -278,211 +278,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 12,
-        "y": 1
-      },
-      "hiddenSeries": false,
-      "id": 7,
-      "interval": "1s",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": true,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "8.3.3",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Num Errors",
-          "color": "#BF1B00"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "Add book",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P76A45B24F43298D1"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "Add Book error",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "count"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Add Order",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P76A45B24F43298D1"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "Add Order error",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Get Books",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P76A45B24F43298D1"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "Get Books error",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Errors Per Second",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "influxdb",
         "uid": "P76A45B24F43298D1"
@@ -492,12 +287,12 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 18,
+        "x": 12,
         "y": 1
       },
       "hiddenSeries": false,
       "id": 10,
-      "interval": ">1s",
+      "interval": "5s",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -536,7 +331,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -592,6 +387,215 @@
       "yaxes": [
         {
           "format": "none",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P76A45B24F43298D1"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "interval": "5s",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": true,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.3.3",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Num Errors",
+          "color": "#BF1B00"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Add book",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P76A45B24F43298D1"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "Add Book error",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Add Order",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P76A45B24F43298D1"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "5s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "Add Order error",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Get Books",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P76A45B24F43298D1"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "5s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "Get Books error",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Errors Per Second",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
           "logBase": 1,
           "show": true
         },
@@ -1264,7 +1268,7 @@
         "type": "influxdb",
         "uid": "P76A45B24F43298D1"
       },
-      "description": "Grouped by 1 sec intervals",
+      "description": "Grouped by 5s intervals",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1276,7 +1280,7 @@
       "height": "250px",
       "hiddenSeries": false,
       "id": 5,
-      "interval": ">1s",
+      "interval": "5s",
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -1310,7 +1314,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -1324,7 +1328,7 @@
           "measurement": "/^$Measurement$/",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT max(\"value\") FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time($__interval) fill(none)",
+          "query": "SELECT max(\"value\") as value FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time(5s) fill(none)",
           "rawQuery": true,
           "refId": "C",
           "resultFormat": "time_series",
@@ -1350,7 +1354,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -1364,7 +1368,7 @@
           "measurement": "/^$Measurement$/",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT percentile(\"value\", 95) FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time($__interval) fill(none)",
+          "query": "SELECT percentile(\"value\", 95) as value FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time(5s) fill(none)",
           "rawQuery": true,
           "refId": "D",
           "resultFormat": "time_series",
@@ -1392,7 +1396,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -1406,7 +1410,7 @@
           "measurement": "/^$Measurement$/",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT percentile(\"value\", 90) FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time($__interval) fill(none)",
+          "query": "SELECT percentile(\"value\", 90) as value FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time(5s) fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1434,7 +1438,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -1448,7 +1452,7 @@
           "measurement": "/^$Measurement$/",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT min(\"value\") FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time($__interval) fill(none)",
+          "query": "SELECT min(\"value\") as value FROM /^$Measurement$/ WHERE $timeFilter and value > 0 GROUP BY time(5s) fill(none)",
           "rawQuery": true,
           "refId": "E",
           "resultFormat": "time_series",
@@ -1524,7 +1528,7 @@
       "hideZeroBuckets": false,
       "highlightCards": true,
       "id": 8,
-      "interval": ">1s",
+      "interval": "5s",
       "legend": {
         "show": false
       },
@@ -1536,7 +1540,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -1550,7 +1554,7 @@
           "measurement": "http_req_duration",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value\" FROM $Measurement WHERE $timeFilter and value > 0",
+          "query": "SELECT mean(\"value\") as value FROM $Measurement WHERE $timeFilter and value > 0 GROUP BY time(5s)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1601,7 +1605,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -1611,15 +1615,12 @@
         "current": {
           "selected": true,
           "tags": [],
-          "text": "http_req_duration + http_req_blocked",
-          "value": [
-            "http_req_duration",
-            "http_req_blocked"
-          ]
+          "text": "http_req_duration",
+          "value": "http_req_duration"
         },
         "hide": 0,
         "includeAll": true,
-        "multi": true,
+        "multi": false,
         "name": "Measurement",
         "options": [
           {
@@ -1633,7 +1634,7 @@
             "value": "http_req_duration"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "http_req_blocked",
             "value": "http_req_blocked"
           },
@@ -1641,11 +1642,6 @@
             "selected": false,
             "text": "http_req_connecting",
             "value": "http_req_connecting"
-          },
-          {
-            "selected": false,
-            "text": "http_req_looking_up",
-            "value": "http_req_looking_up"
           },
           {
             "selected": false,
@@ -1663,7 +1659,7 @@
             "value": "http_req_waiting"
           }
         ],
-        "query": "http_req_duration,http_req_blocked,http_req_connecting,http_req_looking_up,http_req_receiving,http_req_sending,http_req_waiting",
+        "query": "http_req_duration,http_req_blocked,http_req_connecting,http_req_receiving,http_req_sending,http_req_waiting",
         "skipUrlSync": false,
         "type": "custom"
       }
