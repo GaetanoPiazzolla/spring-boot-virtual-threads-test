@@ -1,5 +1,3 @@
-version: '3.5'
-
 networks:
   default:
     name: load-testing-network
@@ -19,6 +17,7 @@ services:
     cap_add:
       - NET_ADMIN
     tty: true
+    command: -c 'max_connections=200'
     build:
       context: ../db
     restart: always
@@ -58,7 +57,24 @@ services:
       - ../grafana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ../grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
-  spring-app-virtual:
+  spring-app-virtual-jdk-24:
+    build:
+      context: ../../spring-boot-virtual-threads-jdk24
+    depends_on:
+      - db-service
+    restart: always
+    ports:
+      - "8081:8080"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          memory: 2G
+
+  spring-app-virtual-jdk-19:
     build:
       context: ../spring-boot-app
     depends_on:
@@ -79,12 +95,10 @@ services:
 
   spring-app-standard:
     build:
-      context: ../spring-boot-app
+      context: ../../spring-boot-virtual-threads-jdk24
     depends_on:
       - db-service
     restart: always
-    environment:
-      - THREAD_MODE=standard
     ports:
       - "8082:8080"
     deploy:
