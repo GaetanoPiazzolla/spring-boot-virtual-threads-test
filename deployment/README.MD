@@ -9,15 +9,14 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
-Add latency for the database connection:
+Add latency for the database connection, where X is the base delay in milliseconds and Y is the delta applied
 
 ```shell
-docker exec db-service apt-get update && apt-get install iproute2 iputils-ping -y
-docker exec db-service tc qdisc add dev eth0 root netem delay 250ms
+docker exec db-service tc qdisc add dev eth0 root netem delay Xms Yms
 ```
 
 To replace latency:
 
 ```shell
-docker exec db-service tc qdisc replace dev eth0 root netem delay 200ms
+docker exec db-service tc qdisc replace dev eth0 root netem delay Xms Yms
 ```

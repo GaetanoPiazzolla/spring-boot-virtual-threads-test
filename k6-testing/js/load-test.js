@@ -2,14 +2,14 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Trend, Rate } from 'k6/metrics';
 
-const getTrend = new Trend('Get Books');
-const getErrorRate = new Rate('Get Books error');
+const getTrend = new Trend('Get_Books');
+const getErrorRate = new Rate('Get_Books_error');
 
-const postTrend = new Trend('Add Book');
-const postErrorRate = new Rate('Add Book error');
+const postTrend = new Trend('Add_Book');
+const postErrorRate = new Rate('Add_Book_error');
 
-const orderTrend = new Trend('Add Order');
-const orderErrorRate = new Rate('Add Order error');
+const orderTrend = new Trend('Add_Order');
+const orderErrorRate = new Rate('Add_Order_error');
 
 export let options = {
   stages: [
@@ -20,7 +20,8 @@ export let options = {
 };
 
 export default function () {
-  const url = `http://spring-app-${__ENV.THREAD}:8080/`
+  const baseUrl = __ENV.BASE_URL || 'http://localhost:8080/';
+  const url = baseUrl;
 
   const params = {
     headers: {
