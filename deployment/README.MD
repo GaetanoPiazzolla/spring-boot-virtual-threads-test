@@ -3,10 +3,10 @@
 Initialize with:
 
 ```shell
-docker-compose down
-docker-compose rm -f
-docker-compose build --no-cache
-docker-compose up -d
+docker compose down --remove-orphans
+docker compose rm -f
+docker compose build --no-cache
+docker compose up -d
 ```
 
 Add latency for the database connection, where X is the base delay in milliseconds and Y is the delta applied
