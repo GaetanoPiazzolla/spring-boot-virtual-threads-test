@@ -79,3 +79,11 @@ export default function () {
 
   orderTrend.add(addOrderResp.timings.duration);
 }
+
+export function teardown() {
+  const baseUrl = __ENV.BASE_URL || 'http://localhost:8080/';
+  const cleanupResp = http.get(baseUrl + 'database/clean');
+  check(cleanupResp, {
+    'cleanup status is 204': (r) => r.status === 204,
+  });
+}
