@@ -6,4 +6,4 @@ scrape_configs:
   - job_name: 'spring-boot-apps'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['spring-boot-virtual-threads-jdk24:8080','spring-boot-virtual-threads-jdk19:8080','spring-boot-platform-threads-jdk19:8080']
+      - targets: ['spring-boot-virtual-threads:8080']

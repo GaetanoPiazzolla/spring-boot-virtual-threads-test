@@ -58,62 +58,24 @@ services:
       - ../grafana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ../grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
-  spring-boot-virtual-threads-jdk24:
-    build: https://github.com/GaetanoPiazzolla/spring-boot-virtual-threads-jdk24.git
+  spring-boot-virtual-threads:
+    build:
+      # https://github.com/GaetanoPiazzolla/spring-boot-virtual-threads.git
+      context: ../../spring-boot-virtual-threads
+      args:
+        JAVA_VERSION: "24" # 19 || 24
+        SPRING_BOOT_VERSION: "4.0.0-SNAPSHOT" # 4.0.0-SNAPSHOT || 3.3.12
+        SPRING_DEPENDENCY_MANAGEMENT_VERSION: "1.1.7" # Change for older versions, this is compatible with both 4.0 and 3.3
     depends_on:
       - db-service
     restart: always
     environment:
+      - VIRTUAL_THREAD_ENABLED=true # true || false
       - JDBC_URL=jdbc:postgresql://db-service:5432/postgres?currentSchema=library&user=postgres&password=postgres
       - SERVER_PORT=8080
       - HIKARICP_CONNECTION_POOL=10
-      - TAGS_APP_NAME=spring-boot-virtual-threads-jdk24
     ports:
-      - "8081:8080"
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: '1'
-          memory: 2G
-        reservations:
-          memory: 1G
-
-  spring-boot-virtual-threads-jdk19:
-    build: https://github.com/GaetanoPiazzolla/spring-boot-virtual-threads.git
-    depends_on:
-      - db-service
-    restart: always
-    environment:
-      - THREAD_MODE=virtual
-      - JDBC_URL=jdbc:postgresql://db-service:5432/postgres?currentSchema=library&user=postgres&password=postgres
-      - SERVER_PORT=8080
-      - HIKARICP_CONNECTION_POOL=10
-      - TAGS_APP_NAME=spring-boot-virtual-threads-jdk19
-    ports:
-      - "8082:8080"
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: '1'
-          memory: 2G
-        reservations:
-          memory: 1G
-
-  spring-boot-platform-threads-jdk19:
-    build: https://github.com/GaetanoPiazzolla/spring-boot-virtual-threads.git
-    depends_on:
-      - db-service
-    restart: always
-    environment:
-      - THREAD_MODE=platform
-      - JDBC_URL=jdbc:postgresql://db-service:5432/postgres?currentSchema=library&user=postgres&password=postgres
-      - SERVER_PORT=8080
-      - HIKARICP_CONNECTION_POOL=10
-      - TAGS_APP_NAME=spring-boot-platform-threads-jdk19
-    ports:
-      - "8083:8080"
+      - "8080:8080"
     deploy:
       replicas: 1
       resources:
