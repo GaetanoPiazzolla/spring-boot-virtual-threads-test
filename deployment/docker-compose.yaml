@@ -24,6 +24,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - NETWORK_DELAY=222ms
+      - NETWORK_JITTER=22ms
     ports:
       - "5432:5432"
     deploy:

@@ -2,8 +2,13 @@
 
 Initialize by running the init.sh script.
 
-Replace latency for the database connection, where X is the base delay in milliseconds and Y is the delta applied
+Configurations for Postgres Database: 
+- Total connection Pool
+- Network delay / Jitter
+- RAM / CPU available
 
-```shell
-docker exec db-service tc qdisc replace dev eth0 root netem delay Xms Yms
-```
+SpringBoot app:
+- Max Connection Pool
+- Virtual Threads or Platform Threads
+- Java Version (tested with 19 and 24)
+- Spring Boot Version (tested with 4.0.0-SNAPSHOT and 3.3.12)

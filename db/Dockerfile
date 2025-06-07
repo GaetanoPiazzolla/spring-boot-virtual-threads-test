@@ -5,3 +5,8 @@ RUN sed -i -e 's/\r$//' /docker-entrypoint-initdb.d/init-db.sh && \
     apt-get install -y iproute2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
