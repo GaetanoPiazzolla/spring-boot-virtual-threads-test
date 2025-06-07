@@ -12,31 +12,6 @@ services:
       - ../prometheus/prom.yaml:/etc/prometheus/prometheus.yml
     container_name: prometheus
 
-  db-service:
-    container_name: db-service
-    cap_add:
-      - NET_ADMIN
-    tty: true
-    command: -c 'max_connections=40'
-    build:
-      context: ../db
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - NETWORK_DELAY=222ms
-      - NETWORK_JITTER=22ms
-    ports:
-      - "5432:5432"
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: '1'
-          memory: 250M
-        reservations:
-          memory: 250M
-
   influxdb:
     container_name: influxdb
     image: influxdb:1.8
@@ -60,6 +35,31 @@ services:
       - ../grafana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ../grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
+  db-service:
+    container_name: db-service
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    command: -c 'max_connections=200'
+    build:
+      context: ../db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - NETWORK_DELAY=100ms
+      - NETWORK_JITTER=10ms
+    ports:
+      - "5432:5432"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '2'
+          memory: 500M
+        reservations:
+          memory: 500M
+
   spring-boot-virtual-threads:
     build:
       # https://github.com/GaetanoPiazzolla/spring-boot-virtual-threads.git
@@ -75,7 +75,7 @@ services:
       - VIRTUAL_THREAD_ENABLED=true # true || false
       - JDBC_URL=jdbc:postgresql://db-service:5432/postgres?currentSchema=library&user=postgres&password=postgres
       - SERVER_PORT=8080
-      - HIKARICP_CONNECTION_POOL=10
+      - HIKARICP_CONNECTION_POOL=20
     ports:
       - "8080:8080"
     deploy:

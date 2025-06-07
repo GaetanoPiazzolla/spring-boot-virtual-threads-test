@@ -23,4 +23,4 @@ docker compose run --rm k6 run /k6-scripts/load-test.js -e BASE_URL=http://sprin
 ```
 
 # Output
-Will be available at: http://localhost:3000/d   /k6/k6-load-testing-results
+Will be available at: http://localhost:3000/d/k6/k6-load-testing-results

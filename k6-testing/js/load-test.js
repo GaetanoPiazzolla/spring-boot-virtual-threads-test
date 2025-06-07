@@ -1,20 +1,16 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { Trend, Rate } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
+import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
-const getTrend = new Trend('Get_Books');
-const getErrorRate = new Rate('Get_Books_error');
-
-const postTrend = new Trend('Add_Book');
-const postErrorRate = new Rate('Add_Book_error');
-
-const orderTrend = new Trend('Add_Order');
-const orderErrorRate = new Rate('Add_Order_error');
+const requestTrend = new Trend('Request_Duration');
+const errorRate = new Rate('Request_Error');
 
 export let options = {
   stages: [
+      { duration: "10s", target: `${__ENV.USERS}` },
       { duration: "5s", target: `${__ENV.USERS}` },
-      { duration: "50s", target: `${__ENV.USERS}` },
+      { duration: "40s", target: `${__ENV.USERS}` },
       { duration: "5s", target: 0 }
   ]
 };
@@ -57,27 +53,13 @@ export default function () {
     };
 
   const responses = http.batch(requests);
-  const getResp = responses['Get Books'];
-  const postResp = responses['Add Book'];
-  const addOrderResp = responses['Add Order'];
 
-  check(getResp, {
-    'status is 200': (r) => r.status === 200,
-  }) || getErrorRate.add(1);
-
-  getTrend.add(getResp.timings.duration);
-
-  check(postResp, {
-    'status is 200': (r) => r.status === 200,
-  }) || postErrorRate.add(1);
-
-  postTrend.add(postResp.timings.duration);
-
-  check(addOrderResp, {
-    'status is 200': (r) => r.status === 200,
-  }) || orderErrorRate.add(1);
-
-  orderTrend.add(addOrderResp.timings.duration);
+  for (const [name, response] of Object.entries(responses)) {
+    check(response, {
+      'status is 200': (r) => r.status === 200,
+    }) || errorRate.add(1);
+    requestTrend.add(response.timings.duration);
+  }
 }
 
 export function teardown() {
@@ -86,4 +68,25 @@ export function teardown() {
   check(cleanupResp, {
     'cleanup status is 204': (r) => r.status === 204,
   });
+}
+
+export function handleSummary(data) {
+  const formatMetric = (value, decimals = 2) => {
+    return value !== undefined && value !== null ? value.toFixed(decimals) : 'N/A';
+  };
+
+  return {
+    'stdout': `
+
+${textSummary(data, { indent: ' ', enableColors: true })}
+
+Test Results:
+    Total Iterations: ${formatMetric(data.metrics.iterations?.values?.count, 0)}
+    Throughput: ${formatMetric(data.metrics.http_reqs?.values?.rate)} req/s
+    Average Response Time: ${formatMetric(data.metrics.http_req_duration?.values?.avg)}ms
+    P95 Response Time: ${formatMetric(data.metrics.http_req_duration?.values?.['p(95)'])}ms
+    Error Rate: ${formatMetric(data.metrics.http_req_failed?.values?.rate * 100)}%
+    ------------
+    `
+  };
 }
