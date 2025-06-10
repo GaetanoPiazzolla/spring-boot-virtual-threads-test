@@ -16,8 +16,8 @@ export let options = {
 };
 
 export default function () {
-  const baseUrl = __ENV.BASE_URL || 'http://localhost:8080/';
-  const url = baseUrl;
+  const url = __ENV.BASE_URL || 'http://localhost:8080/';
+  const workloadUrl = __ENV.WORKLOAD_OPTIMIZED == 'true' ? 'mixed/complex-operation/optimized/1' : 'mixed/complex-operation/1'
 
   const params = {
     headers: {
@@ -47,6 +47,12 @@ export default function () {
       'Add Order': {
         method: 'POST',
         url: url + 'orders?bookIsbn=11111111&firstName=Gaetano',
+        params: params,
+        body: null
+      },
+      'Complex Operation': {
+        method: 'GET',
+        url: url + workloadUrl,
         params: params,
         body: null
       }

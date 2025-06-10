@@ -15,6 +15,7 @@ CREATE TABLE library.books
     author text COLLATE pg_catalog."default" NOT NULL,
     isbn text COLLATE pg_catalog."default" NOT NULL,
     year integer NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT books_pkey PRIMARY KEY (book_id)
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE library.orders
     user_id integer NOT NULL,
     book_id integer NOT NULL,
     quantity integer NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT orders_pkey PRIMARY KEY (order_id),
     CONSTRAINT orders_book_id_fkey FOREIGN KEY (book_id)
         REFERENCES library.books (book_id) MATCH SIMPLE
