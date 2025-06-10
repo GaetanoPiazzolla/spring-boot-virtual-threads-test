@@ -17,6 +17,7 @@ export let options = {
 
 export default function () {
   const url = __ENV.BASE_URL || 'http://localhost:8080/';
+  const workloadUrl = __ENV.WORKLOAD_OPTIMIZED == 'true' ? 'mixed/complex-operation/optimized/1' : 'mixed/complex-operation/1'
 
   const params = {
     headers: {
@@ -24,28 +25,11 @@ export default function () {
     },
   };
 
-  const addBookBody = JSON.stringify({
-      author: `Author Name ${__ITER}`,
-      isbn: `${__VU}`,
-      title: `always the same title`,
-      year: 1900
-  });
 
   const requests = {
-      'Get Books': {
+      'Complex Operation': {
         method: 'GET',
-        url: url +'books',
-        params: params,
-      },
-      'Add Book': {
-        method: 'POST',
-        url: url+'books',
-        params: params,
-        body: addBookBody,
-      },
-      'Add Order': {
-        method: 'POST',
-        url: url + 'orders?bookIsbn=11111111&firstName=Gaetano',
+        url: url + workloadUrl,
         params: params,
         body: null
       }

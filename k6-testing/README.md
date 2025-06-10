@@ -19,7 +19,11 @@ k6 run ./js/load-test.js -e USERS=20 -e BASE_URL=http://localhost:8080/
 # For container test run with:
 
 ```shell
-docker compose run --rm k6 run /k6-scripts/load-test.js -e BASE_URL=http://spring-boot-virtual-threads:8080/ -e USERS=20 -e WORKLOAD_OPTIMIZED=true
+docker compose run --rm k6 run /k6-scripts/load-test.js -e BASE_URL=http://spring-boot-virtual-threads:8080/ -e USERS=20
+```
+
+```shell
+docker compose run --rm k6 run /k6-scripts/load-test-mixed.js -e BASE_URL=http://spring-boot-virtual-threads:8080/ -e USERS=20 -e WORKLOAD_OPTIMIZED=true
 ```
 
 # Output
