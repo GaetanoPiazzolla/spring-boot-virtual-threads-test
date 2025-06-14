@@ -13,7 +13,7 @@ choco install k6
 # For local de-containerized testing
 
 ```shell
-k6 run ./js/load-test.js -e USERS=20 -e BASE_URL=http://localhost:8080/
+k6 run ./js/load-test.js -e BASE_URL=http://localhost:8080/ -e USERS=20
 ```
 
 # For container test run with:
