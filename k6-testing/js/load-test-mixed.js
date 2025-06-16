@@ -17,7 +17,7 @@ export let options = {
 
 export default function () {
   const url = __ENV.BASE_URL || 'http://localhost:8080/';
-  const workloadUrl = __ENV.WORKLOAD_OPTIMIZED == 'true' ? 'mixed/complex-operation/optimized/1' : 'mixed/complex-operation/1'
+  const workloadUrl = 'mixed/complex-operation/1'
 
   const params = {
     headers: {

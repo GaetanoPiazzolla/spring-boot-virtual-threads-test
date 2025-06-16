@@ -23,7 +23,7 @@ docker compose run --rm k6 run /k6-scripts/load-test.js -e BASE_URL=http://sprin
 ```
 
 ```shell
-docker compose run --rm k6 run /k6-scripts/load-test-mixed.js -e BASE_URL=http://spring-boot-virtual-threads:8080/ -e USERS=20 -e WORKLOAD_OPTIMIZED=true
+docker compose run --rm k6 run /k6-scripts/load-test-mixed.js -e BASE_URL=http://spring-boot-virtual-threads:8080/ -e USERS=20
 ```
 
 # Output
